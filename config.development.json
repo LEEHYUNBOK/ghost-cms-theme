@@ -7,20 +7,17 @@
   "database": {
     "client": "sqlite3",
     "connection": {
-      "filename": "C:\\alck\\content\\data\\ghost-local.db"
+      "filename": "C:\\ghost-cms-theme\\content\\data\\ghost-local.db"
     }
   },
   "mail": {
     "transport": "Direct"
   },
   "logging": {
-    "transports": [
-      "file",
-      "stdout"
-    ]
+    "transports": ["file", "stdout"]
   },
   "process": "local",
   "paths": {
-    "contentPath": "C:\\alck\\content"
+    "contentPath": "C:\\ghost-cms-theme\\content"
   }
 }
