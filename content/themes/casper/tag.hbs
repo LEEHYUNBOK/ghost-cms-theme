@@ -40,6 +40,8 @@
                             </p>
                         </div>
                     </div>
+                    <div>
+                    </div>
                 </div>{{!--/.post-card-content--}}
 
             </section>
@@ -53,5 +55,11 @@
             {{/foreach}}
 
         </div>
+
+        {{#get "posts" filter="tags:getting-started"}}
+	        {{#foreach posts}}
+			<div class="recent-title"><a href="{{url}}">{{title}}</a></div>
+	        {{/foreach}}
+        {{/get}}
     </div>
 </section>
