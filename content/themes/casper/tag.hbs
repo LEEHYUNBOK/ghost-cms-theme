@@ -1,13 +1,31 @@
 {{!< default}}
 {{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
 
+<style>
+    .faqbutton {
+        padding: 0.5em 1.5em; 
+        border: 1px solid gray;           
+        border-radius: 0.5em; 
+        background: linear-gradient(#fff, #ddd); 
+        text-decoration: none; 
+        color: black;
+        display: inline-block;
+        margin: 1px;
+    }
+    .faqbutton:active {
+        -ms-transform: translateY(2px);
+        -webkit-transform: translateY(2px);
+        transform: translateY(2px);
+        background: #ccc;
+    }
+</style>
 
 <section class="outer">
     <div class="inner posts">
         <div class="post-feed">
-
+            {{!-- faq메뉴바 일자로 하기위해 css의 display를 flex로 변경함 --}}
             {{#tag}}
-            <section class="post-card post-card-large">
+            <section class="post-card post-card-large" style="display: flex;">
                 {{#if feature_image}}
                 <div class="post-card-image-link">
                     {{!-- This is a responsive image, it loads different sizes depending on device
@@ -40,13 +58,24 @@
                             </p>
                         </div>
                     </div>
+                    {{!-- faq의 목록 
+                        slug가 faq와 관련된 ghost의 태그 일때만 출력한다.
+                        filter문에 직접 입력해 줘야한다.
+                    --}}
                     <div>
+                        {{#get 'tags' filter="name:{{name}},slug:[allfaq,faqgasangjasan,faqriweodeu,faqgita,faqsonggeum,faqaebgongtong,faqhoeweon]"}}
+                            {{#foreach tags}}
+                                <a class="faqbutton" href="{{url}}">{{description}}</a>
+                            {{/foreach}}
+                            {{else}}
+                        {{/get}}
                     </div>
+
                 </div>{{!--/.post-card-content--}}
-
             </section>
+            
             {{/tag}}
-
+            
             {{#foreach posts}}
 
                 {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
@@ -55,11 +84,6 @@
             {{/foreach}}
 
         </div>
-
-        {{#get "posts" filter="tags:getting-started"}}
-	        {{#foreach posts}}
-			<div class="recent-title"><a href="{{url}}">{{title}}</a></div>
-	        {{/foreach}}
-        {{/get}}
     </div>
+
 </section>

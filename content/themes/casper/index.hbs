@@ -29,14 +29,16 @@ into the {body} of the default.hbs template --}}
 {{!-- The main content area --}}
 <main id="site-main" class="site-main outer">
     <div class="inner posts">
-
+        
+        {{!-- HOME화면에서 faq를 제외하고 모두 출력 --}}
         <div class="post-feed">
-            {{#foreach posts}}
+            {{#get 'posts' filter="tags.slug:-allfaq" include="tags,authors"}}
+                {{#foreach posts}}
+                    {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+                    {{> "post-card"}}
 
-                {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
-                {{> "post-card"}}
-
-            {{/foreach}}
+                {{/foreach}}
+            {{/get}}
         </div>
 
     </div>
